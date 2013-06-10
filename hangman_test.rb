@@ -8,6 +8,7 @@ class TestHangman < Test::Unit::TestCase
         @game = Hangman.new
         @game.word = "booger"
         @game.board = @game.draw_board(@game.word)
+
     end
 
     def test_for_initialize_method
@@ -37,6 +38,30 @@ class TestHangman < Test::Unit::TestCase
         assert_equal(false,@game.valid_guess?("booger"))
     end
 
+    # def test_if_raise_is_outputed_from_invalid_guess
+    #     assert_raise("Invalid Guess") {@game.guess("booger")}
+    # end
 
+    def test_win_for_true
+        @game.guess("b")
+        @game.guess("o")
+        @game.guess("g")
+        @game.guess("e")
+        @game.guess("r")
+        assert_equal(true,@game.win?)
+    end
+
+    def test_for_lose
+        @game.guess("1")
+        @game.guess("2")
+        @game.guess("3")
+        @game.guess("4")
+        @game.guess("5")
+        @game.guess("6")
+        @game.guess("7")
+        @game.guess("8")
+        puts @game.chances
+        assert_equal(0,@game.chances)
+    end
 end
 
