@@ -8,12 +8,12 @@ class Hangman
     @word    = LIST.sample
     @board   = draw_board(@word)
   end
-  
+
   # return @guesses as a string
-  def guesses
+  def guess_string
     @guesses.join(' ')
   end
-  
+
   # return a string of underscores equal to length of the given word
   def draw_board(word)
     "_" * @word.length
@@ -39,7 +39,7 @@ class Hangman
         @chances -= 1
         @guesses << letter
   end
-  
+
 def valid_guess?(letter)
   letter.length ==1
 end
@@ -47,7 +47,7 @@ end
   # if the word has the given letter, put it on the board, otherwise, it's a wrong guess
   def guess(letter)
     raise "Invalid Guess" unless valid_guess?(letter)
-      
+
     if word_has?(letter)
       put_letter_on_board(letter)
     else
@@ -62,7 +62,7 @@ end
 
   # return true if @chances is 0, otherwise return false
   def lost?
-     @chances == 0 
+     @chances == 0
   end
-  
+
 end
